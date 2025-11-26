@@ -1,0 +1,130 @@
+/* =========================
+   Общие стили
+   ========================= */
+body {
+    font-family: "Inter", sans-serif;
+    line-height: 1.5;
+}
+
+/* Заголовки */
+h1,
+h2,
+h3 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
+
+h4,
+h5 {
+    font-weight: 600;
+}
+
+/* =========================
+   Изображения
+   ========================= */
+
+/* Если вдруг где-то останется rounded-circle */
+img.rounded-circle {
+    max-width: 260px;
+}
+
+/* Фото на главной (спорт-стиль) */
+.photo-sport {
+    border-radius: 4px;
+    object-fit: cover;
+    width: 100%;
+    max-width: 320px;
+    filter: contrast(1.05) saturate(1.1);
+}
+
+/* На всякий случай универсальный класс под естественное фото */
+.photo-natural {
+    border-radius: 8px;
+    object-fit: cover;
+    width: 100%;
+    max-width: 260px;
+}
+
+/* =========================
+   Карточки проектов
+   ========================= */
+.card img {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* =========================
+   Таблица дневника
+   ========================= */
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+/* =========================
+   Формы
+   ========================= */
+form input,
+form textarea {
+    font-size: 15px;
+}
+
+/* =========================
+   Навигация
+   ========================= */
+.nav-link.active {
+    font-weight: 600;
+}
+
+/* =========================
+   Футер
+   ========================= */
+footer {
+    background: #f8f9fa;
+}
+
+/* =========================
+   Тени
+   ========================= */
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem #00000013 !important;
+}
+
+/* =========================
+   Доступность (skip-link)
+   ========================= */
+.visually-hidden-focusable {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    padding: 8px 12px;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    z-index: 1000;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.visually-hidden-focusable:focus {
+    top: 10px;
+}
+
+/* =========================
+   Небольшие адаптивные правки
+   ========================= */
+
+/* Чтобы заголовки и текст смотрелись мягче на маленьких экранах */
+@media (max-width: 576px) {
+    h1 {
+        font-size: 1.7rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .card img {
+        height: 160px;
+    }
+}
