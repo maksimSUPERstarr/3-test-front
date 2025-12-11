@@ -55,11 +55,20 @@
 
         <h1 class="fw-bold mb-4 text-center">Мои проекты</h1>
 
+        <!-- Кнопки фильтров -->
+        <div class="text-center mb-4">
+            <button class="btn btn-primary me-2" onclick="filterCategory('sport')">Спорт</button>
+            <button class="btn btn-secondary me-2" onclick="filterCategory('edu')">Образование</button>
+            <button class="btn btn-outline-dark" onclick="filterCategory('all')">Показать все</button>
+        </div>
+
         <!-- Projects Grid -->
         <div class="row g-4">
 
             <!-- Project 1 -->
-            <article class="col-md-4">
+            <article class="col-md-4 project-card" id="project1"
+                data-repo="https://github.com/maksimSUPERstarr/3-test-front"
+                data-pages="https://maksimsuperstarr.github.io/3-test-front/">
                 <div class="card h-100 shadow-sm">
                     <img src="../images/project1.jpg" class="card-img-top"
                         alt="Учебный сайт-портфолио — превью проекта">
@@ -69,12 +78,17 @@
                             Многостраничный сайт, созданный по практикам 7–14.
                             Использованы: HTML5, CSS3, Bootstrap, правильная структура проекта.
                         </p>
+                        <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="openProjectModal(1)">
+                            Подробнее
+                        </button>
                     </div>
                 </div>
             </article>
 
             <!-- Project 2 -->
-            <article class="col-md-4">
+            <article class="col-md-4 project-card" id="project2"
+                data-repo="https://github.com/maksimSUPERstarr/3-test-front"
+                data-pages="https://maksimsuperstarr.github.io/3-test-front/">
                 <div class="card h-100 shadow-sm">
                     <img src="../images/project2.jpg" class="card-img-top"
                         alt="Голы Криштиану Роналду — превью проекта">
@@ -83,12 +97,17 @@
                         <p class="card-text">
                             Страница, на которой представлены 5 лучших голов Криштиану Роналду.
                         </p>
+                        <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="openProjectModal(2)">
+                            Подробнее
+                        </button>
                     </div>
                 </div>
             </article>
 
             <!-- Project 3 -->
-            <article class="col-md-4">
+            <article class="col-md-4 project-card" id="project3"
+                data-repo="https://github.com/maksimSUPERstarr/3-test-front"
+                data-pages="https://maksimsuperstarr.github.io/3-test-front/">
                 <div class="card h-100 shadow-sm">
                     <img src="../images/project3.jpg" class="card-img-top" alt="Бизнес-темки — превью проекта">
                     <div class="card-body">
@@ -96,26 +115,36 @@
                         <p class="card-text">
                             Предлагаю свои идеи вам в обиход. ДЕРЗАЙТЕ НАЛЕТАЙТЕ!!!
                         </p>
+                        <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="openProjectModal(3)">
+                            Подробнее
+                        </button>
                     </div>
                 </div>
             </article>
 
             <!-- Project 4 -->
-            <article class="col-md-4">
+            <article class="col-md-4 project-card" id="project4"
+                data-repo="https://github.com/maksimSUPERstarr/3-test-front"
+                data-pages="https://maksimsuperstarr.github.io/3-test-front/">
                 <div class="card h-100 shadow-sm">
                     <img src="../images/project4.jpg" class="card-img-top" alt="ФК Беляево — спортивный проект">
                     <div class="card-body">
-                        <h2 class="h5 card-title">ФК Беляево</h2>
+                        <h2 class="h5 card-title">Атлетико Беляево</h2>
                         <p class="card-text">
                             Спортивный комьюнити, в которое входит не только футбольный клуб, но и другие
                             оздоровительные программы.
                         </p>
+                        <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="openProjectModal(4)">
+                            Подробнее
+                        </button>
                     </div>
                 </div>
             </article>
 
             <!-- Project 5 -->
-            <article class="col-md-4">
+            <article class="col-md-4 project-card" id="project5"
+                data-repo="https://github.com/maksimSUPERstarr/3-test-front"
+                data-pages="https://maksimsuperstarr.github.io/3-test-front/">
                 <div class="card h-100 shadow-sm">
                     <img src="../images/project5.jpg" class="card-img-top" alt="Цель — пробежать полумарафон">
                     <div class="card-body">
@@ -123,6 +152,9 @@
                         <p class="card-text">
                             Достичь этой цели к концу апреля 26-го года.
                         </p>
+                        <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="openProjectModal(5)">
+                            Подробнее
+                        </button>
                     </div>
                 </div>
             </article>
@@ -138,9 +170,150 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
+    <!-- Modal: подробности проекта -->
+    <div class="custom-modal" id="projectModal" onclick="if (event.target === this) closeProjectModal();">
+        <div class="custom-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+
+            <button type="button" class="custom-modal__close" aria-label="Закрыть" onclick="closeProjectModal()">
+                &times;
+            </button>
+
+            <!-- Заголовок -->
+            <h2 id="projectModalTitle" class="custom-modal__title h5"></h2>
+
+            <!-- Картинка проекта -->
+            <img id="projectModalImage" src="" alt=""
+                style="width:100%;max-width:260px;border-radius:8px;margin-bottom:1rem;">
+
+            <!-- Текст -->
+            <p id="projectModalDescription" class="custom-modal__text"></p>
+
+            <!-- Ссылки -->
+            <div class="d-grid gap-2">
+                <a id="projectModalRepo" href="#" target="_blank" class="btn btn-primary btn-sm">
+                    Репозиторий GitHub
+                </a>
+
+                <a id="projectModalPages" href="#" target="_blank" class="btn btn-success btn-sm">
+                    Открыть GitHub Pages
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+        <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+     
+    <script>
+        const ALL_PROJECTS = [1, 2, 3, 4, 5];
+        const SPORT_PROJECTS = [2, 4, 5];
+        const EDU_PROJECTS = [1, 3];
+
+        function filterCategory(type) {
+            let toShow;
+
+            if (type === 'sport') {
+                toShow = SPORT_PROJECTS;
+            } else if (type === 'edu') {
+                toShow = EDU_PROJECTS;
+            } else {
+                toShow = ALL_PROJECTS;
+            }
+
+            ALL_PROJECTS.forEach(id => {
+                const el = document.getElementById('project' + id);
+                if (!el) return;
+
+                const shouldShow = toShow.includes(id);
+
+                if (shouldShow) {
+                    // показываем с анимацией
+                    el.style.display = 'block';
+                    el.classList.add('is-hidden');
+                    requestAnimationFrame(() => {
+                        el.classList.remove('is-hidden');
+                    });
+                } else {
+                    // плавно прячем, потом display:none
+                    el.classList.add('is-hidden');
+                    setTimeout(() => {
+                        el.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        function openProjectModal(projectId) {
+            const article = document.getElementById('project' + projectId);
+            if (!article) return;
+
+            const titleEl = article.querySelector('.card-title');
+            const descEl = article.querySelector('.card-text');
+            const imgEl = article.querySelector('.card-img-top');
+
+            const repoUrl = article.getAttribute('data-repo');
+            const pagesUrl = article.getAttribute('data-pages');
+
+            const modal = document.getElementById('projectModal');
+            const modalTitle = document.getElementById('projectModalTitle');
+            const modalDesc = document.getElementById('projectModalDescription');
+            const modalImage = document.getElementById('projectModalImage');
+            const modalRepo = document.getElementById('projectModalRepo');
+            const modalPages = document.getElementById('projectModalPages');
+
+            modalTitle.textContent = titleEl ? titleEl.textContent.trim() : 'Проект';
+            modalDesc.textContent = descEl ? descEl.textContent.trim() : '';
+
+            if (imgEl) {
+                modalImage.src = imgEl.src;
+                modalImage.alt = imgEl.alt || modalTitle.textContent;
+            } else {
+                modalImage.src = '';
+                modalImage.alt = '';
+            }
+
+            if (repoUrl) {
+                modalRepo.href = repoUrl;
+                modalRepo.style.display = 'block';
+            } else {
+                modalRepo.style.display = 'none';
+            }
+
+            if (pagesUrl) {
+                modalPages.href = pagesUrl;
+                modalPages.style.display = 'block';
+            } else {
+                modalPages.style.display = 'none';
+            }
+            
+            const smallModalProjects = [1, 3];
+
+            if (smallModalProjects.includes(projectId)) {
+                modal.classList.add('modal-small');
+            } else {
+                modal.classList.remove('modal-small');
+            }
+
+            modal.classList.add('custom-modal--show');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            if (!modal) return;
+
+            modal.classList.remove('custom-modal--show');
+            document.body.classList.remove('modal-open');
+        }
+
+        // Закрытие по Esc
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeProjectModal();
+            }
+        });
+    </script>
 
 </body>
-
 </html>
